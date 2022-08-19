@@ -1,21 +1,23 @@
+# Musinsa
+
+### Backend
+
+```javascript
 const AWS = require("aws-sdk");
 require("dotenv").config();
 AWS.config.update({region: process.env.REGION});
 const moment = require("moment");
 
-
-// 해당 IAM 유저의 User name
-// 해당 IAM 유저의 "AKIA" 로 시작하는 Access Key ID
-// 해당 Access Key 의 생성 시간
 exports.getOldIamUser = async (req, res, next) => {
     try {
         const iam = new AWS.IAM();
         let listUsersParams = {};
         let overtimeUserInfo = [];
+        // 환경 변수로 OVER_TIME 을 입력받는다.
         const overtime = process.env.OVER_TIME;
         await iam.listUsers(listUsersParams, (err, data) => {
             if (err) console.log(err, err.stack);
-            else {
+        else {
                 data.Users.filter(a => {
                     const now = moment().format("YYYY-MM-DD HH:mm:ss");
                     const old = moment(a.CreateDate).format("YYYY-MM-DD HH:mm:ss")
@@ -31,3 +33,8 @@ exports.getOldIamUser = async (req, res, next) => {
         next(err);
     }
 }
+```
+
+Access Key Pair 가 생성 후 OVER_TIME 을 초과하는 IAM User 를 찾아 출력하도록 하는 간단한 API 를 구현했다. 
+
+[aws-sdk 참고 자료](https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html)
