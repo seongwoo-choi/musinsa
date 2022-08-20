@@ -89,6 +89,7 @@ docker push how0326/musinsa
 minikube start --nodes 3
 ```
 
+
 how0326/musinsa 컨테이너에게 환경 변수를 넘겨줘야 한다.
 
 각각의 값들은 secret, configmap 오브젝트를 사용하여 환경 변수로 넘겨줄 것이다.
