@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: old-iam-users
+  labels:
+    env: production
+spec:
+  type: NodePort
+  selector:
+    env: production
+    app: old-iam-users-app
+  ports:
+    - port: 80
+      targetPort: 8080
