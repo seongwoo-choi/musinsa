@@ -52,3 +52,30 @@ Access Key Pair 가 생성된 후 OVER_TIME 을 초과하는 IAM User 를 찾아
 
 [aws-sdk 참고 자료](https://docs.aws.amazon.com/ko_kr/sdk-for-javascript/v3/developer-guide/iam-examples.html)
 
+### Dockerfile
+
+.dockerignore 에서 .env 파일을 제외했기 때문에 ENV 로 환경 변수들을 입력받아야 한다.
+
+AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY 는 k8s secret 오브젝트로 전달하고 나머지는 config 오브젝트로 환경 변수를 전달할 예정이다.
+
+```
+FROM node:16.15.1-alpine
+WORKDIR /app
+COPY package*.json ./
+ENV PORT $PORT
+ENV AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID
+ENV AWS_SECRET_ACCESS_KEY $AWS_SECRET_ACCESS_KEY
+ENV OVER_TIME $OVER_TIME
+ENV REGION $REGION
+RUN npm install
+COPY . .
+CMD ["npm", "run", "start"]
+EXPOSE 8080
+```
+
+도커 허브 레지스트리에 이미지를 올린다.
+
+```bash
+docker build -t how0326/musinsa .
+docker push how0326/musinsa
+```
