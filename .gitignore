@@ -1,3 +1,4 @@
 backend/node_modules
 backend/.env
 .idea
+k8s/secret-configs
