@@ -11,6 +11,13 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 
+const iamRoute = require("./routes/iamRoute");
+
+app.use("/api/iam-user", iamRoute);
+app.use("/api/health", (req, res, next) => {
+    res.status(200).json({ msg: "health check" })
+});
+
 app.use((error, req, res, next)=> {
     const status = error.statusCode || 500;
     const msg = error.message;
