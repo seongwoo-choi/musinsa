@@ -13,25 +13,25 @@ app.use(xss());
 
 const iamRoute = require("./routes/iamRoute");
 
-app.use("/api/iam-user", iamRoute);
-app.use("/api/health", (req, res, next) => {
-    res.status(200).json({ msg: "health check" })
+app.use("/api/old-iam-user", iamRoute);
+app.use("/api/health-check", (req, res, next) => {
+  res.status(200).json({ msg: "health check" });
 });
 
-app.use((error, req, res, next)=> {
-    const status = error.statusCode || 500;
-    const msg = error.message;
-    const data = error.data;
+app.use((error, req, res, next) => {
+  const status = error.statusCode || 500;
+  const msg = error.message;
+  const data = error.data;
 
-    res.status(status).json({ status, data, msg });
+  res.status(status).json({ status, data, msg });
 });
 
 const start = () => {
-    try {
-        app.listen(process.env.PORT || 8080);
-    } catch (err) {
-        console.log(err);
-    }
-}
+  try {
+    app.listen(process.env.PORT || 8080);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 start();
