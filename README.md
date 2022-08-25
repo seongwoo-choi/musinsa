@@ -239,10 +239,6 @@ minikube service old-iam-users
 
 실제 API 가 아래 그림처럼 잘 작동하는 것을 확인할 수 있다.
 
-![api-iam-user](images/api-iam-user.png)
-
-![api-health-check](images/api-health-check.png)
-
 실제 본인 IAM 계정으로 테스트를 하고자 한다면 secret-configs 디렉토리의 AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY 파일 안에 값을 본인 AWS IAM 계정의 키와 시크릿 키를 넣은 후, configs 디렉토리 안의 OVER_TIME 파일 안의 값을 원하는 시간으로 변경하고 secret, configmap 오브젝트 삭제 후 재생성한다.
 
 ![access-key-id](images/access-key-id.png)
