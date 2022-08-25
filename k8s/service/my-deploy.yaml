@@ -35,7 +35,7 @@ spec:
                 name: configs
           livenessProbe:
             httpGet:
-              path: /api/health
+              path: /api/health-check
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 5
@@ -44,7 +44,7 @@ spec:
             failureThreshold: 5
           readinessProbe:
             httpGet:
-              path: /api/health
+              path: /api/health-check
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 5
