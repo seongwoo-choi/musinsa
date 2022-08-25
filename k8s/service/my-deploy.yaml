@@ -21,11 +21,11 @@ spec:
           image: how0326/musinsa
           resources:
             requests:
-              memory: "64Mi"
-              cpu: "250m"
+              memory: "512Mi"
+              cpu: "500m"
             limits:
-              memory: "64Mi"
-              cpu: "250m"
+              memory: "512Mi"
+              cpu: "500m"
           ports:
             - containerPort: 8080
           envFrom:
